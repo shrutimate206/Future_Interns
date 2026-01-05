@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure File Sharing</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 420px;
+            margin: 80px auto;
+            background: rgba(0,0,0,0.45);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            background: white;
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4fc3f7;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0288d1;
+            color: white;
+        }
+
+        .success {
+            color: #00ffae;
+            margin-top: 15px;
+        }
+
+        .files {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .files h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.08);
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+
+        .file-item a {
+            color: #00ffae;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .file-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>🔐 Secure File Sharing</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Encrypt & Upload</button>
+    </form>
+
+    {% if message %}
+        <p class="success">{{ message }}</p>
+    {% endif %}
+
+    <div class="files">
+        <h3>📂 Encrypted Files</h3>
+
+        {% for file in files %}
+        <div class="file-item">
+            <span>{{ file }}</span>
+            <a href="/download/{{ file }}">Download</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
+
+
+
